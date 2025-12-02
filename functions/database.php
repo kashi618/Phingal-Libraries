@@ -13,6 +13,6 @@
     die("Connection failed: ".$conn->connect_error);
   }
   else {
-    echo "LOG: Database connected<br>";
+    //echo "LOG: Database connected<br>";
   }
 ?>

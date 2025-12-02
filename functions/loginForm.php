@@ -1,6 +1,5 @@
 <?php
     $login_error = '';
-    session_start();
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = trim($_POST['username'] ?? '');
@@ -18,9 +17,8 @@
 	    if ($result && mysqli_num_rows($result) === 1) {
 	        $user = mysqli_fetch_assoc($result);
       		
-		$_SESSION['loggedIn'] = true;
-		$_SESSION['username'] = $user['Username'];
-		header('Location: library.php');
+			$_SESSION['username'] = $username;
+			header('Location: index.php');
 	    	exit;
 	    }
 	    else {
