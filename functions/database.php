@@ -1,12 +1,12 @@
 <?php
   // SQL server details
-  $servername = "localhost";
-  $username   = "root";
-  $password   = "";
-  $dbname     = "phingal_libraries";
+  $servernameDB = "localhost";
+  $usernameDB   = "root";
+  $passwordDB   = "";
+  $nameDB     = "phingal_libraries";
 
   // Connect to SQL server
-  $conn = new mysqli($servername, $username, $password, $dbname);
+  $conn = new mysqli($servernameDB, $usernameDB, $passwordDB, $nameDB);
 
   // Check if connection is success
   if ($conn->connect_error) {

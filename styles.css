@@ -1,12 +1,37 @@
+body {
+  background-color: #FFF1E0;
+  font-family: serif;
+}
 nav {
-  font-weight: bold;
   display: flex;
   justify-content: center;
+  font-weight: bold;
   gap: 40px;
 }
 
 .header {
+  display: flex;
+  justify-content: center;
   font-weight: 500;
-  font-size:60px;
-
+  font-size: 50px;
 }
+
+.registerForm {
+  
+}
+
+.accountMenu {
+  display: flex;
+  justify-content: right;
+}
+
+
+.searchbar {
+  width: 400px;
+  height: 40px;
+  padding: 10px;
+  border: 2.5px solid black;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+

@@ -1,9 +1,10 @@
-<?php session_start(); ?>
+<?php 
+  session_start();
 
-<?php require 'functions/database.php'; ?>
-<?php require 'functions/logout.php'; ?>
+  require "functions/database.php";
+  require "functions/logout.php";
+  require "functions/register.php"; 
 
-<?php
   // If not logged in, send to login page
   if (!isset($_SESSION['username'])) {
       header("Location: login.php");
@@ -18,17 +19,11 @@
   <title>Phingal Libraries</title>
 </head>
 <body>
-  <form method="post"><input type="submit" value="logout" name="logout"></form> 
-  <?php require "functions/header.php"?>
-
-  <nav>
-    <a href="index.php">HOME</a>
-    <a href="search.php">SEARCH</a>
-    <a href="reserved.php">RESERVED</a>
-    <a href="about.php">ABOUT</a>
-  </nav>
-  <hr>
-
+  <?php
+    require "functions/accountMenu.php";
+    require "functions/header.php";
+    require "functions/navbar.php";
+  ?>
 
   <!-- Library/Home page -->
   <h1>Library</h1>

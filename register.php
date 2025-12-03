@@ -1,21 +1,20 @@
-<? session_start(); ?>
-
+<?php session_start(); ?>
 <?php require 'functions/database.php' ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-
+  <link rel="stylesheet" href="styles.css">
+  <title>Phingal Libraries</title>
 </head>
 <body>
-   <div class="topbar">
-    <a class="active" href="#home">Library</a>
-    <a href="#news">Reserved Books</a>
-    <a href="#contact">Account</a>
-    <a href="#about">About</a>
-  </div> 
+  <br>
+  <?php
+    require "functions/header.php"
+  ?>
 
   <center>
-  <form method="post">
+  <form class="registerForm" method="post">
     <p>Username</p>
     <input type="text" name="username" placeholder="JarlUlfric123">
 
@@ -49,7 +48,7 @@
     <p>Mobile</p>
     <input type="text" name="mobile" placeholder="0871234567">
 
-    <p><input type="submit" value="Login"> <input type="reset" value="Reset"></p>
+    <p><input type="submit" value="Register"> <input type="reset" value="Reset"></p>
   </form>
   </center>
 </body>

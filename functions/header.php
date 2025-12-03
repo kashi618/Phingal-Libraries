@@ -1,9 +1,3 @@
-<?php
-  echo '
-  <hr>
-  <center>
-    <a class="header";>Phingal Libraries</a>
-  <center>
-  <hr>
- ';
-?>
+<hr>
+<a class="header";>Phingal Libraries</a>
+<hr>

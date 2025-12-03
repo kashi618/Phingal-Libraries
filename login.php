@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="styles.css">
   <title>Phingal Libraries</title>
 </head>
 <body>
