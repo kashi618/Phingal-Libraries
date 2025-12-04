@@ -13,27 +13,6 @@
 	}
 
 	$username = $_SESSION['username'];
-	$table_candidates = ['Reservations', 'ReservedBooks', 'Reserved'];
-	$active_table = null;
-
-	foreach ($table_candidates as $table) {
-		$escaped = $conn->real_escape_string($table);
-		$check = $conn->query("SHOW TABLES LIKE '{$escaped}'");
-		if ($check && $check->num_rows > 0) {
-			$active_table = $table;
-			$check->free();
-			break;
-		}
-		if ($check) {
-			$check->free();
-		}
-	}
-
-	if ($active_table === null) {
-		$reserved_error = 'Reservation table not found.';
-		return;
-	}
-
 	$sql = "
 		SELECT 
 			b.BookTitle AS BookTitle,
@@ -42,7 +21,7 @@
 			b.Year AS Year,
 			b.ISBN AS ISBN,
 			r.ReservedDate AS ReservedDate
-		FROM `{$active_table}` r
+		FROM `ReservedBooks` r
 		INNER JOIN Books b ON b.ISBN = r.ISBN
 		WHERE r.Username = ?
 		ORDER BY r.ReservedDate DESC, b.BookTitle ASC
@@ -50,14 +29,14 @@
 
 	$stmt = $conn->prepare($sql);
 	if ($stmt === false) {
-		$reserved_error = 'Unable to prepare reserved books query.';
+		$reserved_error = 'Unable to prepare reserved books query: '.$conn->error;
 		return;
 	}
 
 	$stmt->bind_param('s', $username);
 
 	if (!$stmt->execute()) {
-		$reserved_error = 'Unable to execute reserved books query.';
+		$reserved_error = 'Unable to execute reserved books query: '.$stmt->error;
 		$stmt->close();
 		return;
 	}
@@ -68,7 +47,7 @@
 		$result->free();
 	}
 	else {
-		$reserved_error = 'Unable to fetch reserved books.';
+		$reserved_error = 'Unable to fetch reserved books: '.$stmt->error;
 	}
 
 	$stmt->close();

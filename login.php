@@ -1,7 +1,8 @@
 <?php
   session_start();
-  require 'functions/database.php';
-  require 'functions/loginForm.php';
+  
+  require "functions/database.php";
+  require "functions/loginForm.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,11 +12,9 @@
   <title>Phingal Libraries</title>
 </head>
 <body>
-  <!-- Header -->
   By Neil Jiang - C24510496
   <?php require 'functions/header.php'; ?>
 
-  <!-- User Login -->
   <center><h1>Please Login!</h1></center>
 
   <form method="post">

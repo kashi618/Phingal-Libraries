@@ -3,7 +3,7 @@
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = trim($_POST['username'] ?? '');
-	$password = trim($_POST['password'] ?? '');
+		$password = trim($_POST['password'] ?? '');
 
         // Check if user has missing values
 	if ($username === '' || $password === '') {

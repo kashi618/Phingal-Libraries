@@ -3,6 +3,11 @@
   
   require "functions/database.php";
   require "functions/logout.php";
+
+  $unreserve_message = '';
+  $unreserve_error = '';
+
+  require "functions/unreserveBook.php";
   require "functions/reserved.php";
 
   // If not logged in, send to login page
@@ -45,6 +50,7 @@
       if ($has_due_date) {
         echo '<td>Due Date</td>';
       }
+      echo '<td>Actions</td>';
       echo "</tr>\n";
       foreach ($reserved_rows as $row) {
         echo '<tr>';
@@ -61,9 +67,21 @@
           $due_on = $row['DueDate'] ?? '';
           echo '<td>'.htmlentities($due_on).'</td>';
         }
+        echo '<td>';
+        echo '<form method="post" action="reservedBooks.php">';
+        echo '<button type="submit" name="unreserve_isbn" value="'.htmlentities($row['ISBN']).'">Unreserve</button>';
+        echo '</form>';
+        echo '</td>';
         echo "</tr>\n";
       }
       echo "</table>\n";
+    }
+
+    if ($unreserve_message !== '') {
+      echo '<p class="success-message">'.htmlentities($unreserve_message).'</p>';
+    }
+    elseif ($unreserve_error !== '') {
+      echo '<p class="error-message">'.htmlentities($unreserve_error).'</p>';
     }
   ?>
   

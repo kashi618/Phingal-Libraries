@@ -1,6 +1,8 @@
 <?php 
   session_start();
-  require 'functions/database.php'
+
+  require "functions/database.php";
+  require "functions/registerForm.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,10 +12,8 @@
   <title>Phingal Libraries</title>
 </head>
 <body>
-  <?php
-    echo "<br>";
-    require "functions/header.php";
-  ?>
+  <br>
+  <?php require 'functions/header.php'; ?>
   <br>
 
   <center><h1>Please Register!</h1></center>
@@ -73,6 +73,15 @@
     <input type="submit" value="Register"> <input type="reset" value="Reset"></p>
   </div>
   </form>
+
+  <!-- Error Message -->
+  <div style="display: flex; justify-content: center; margin-top: 10px; font-size: 20px; color:red; font-style:italic;">
+    <?php if ($register_error != '') {echo htmlspecialchars($register_error);} ?>
+  </div>
+  <!-- Success Message -->
+  <div style="display: flex; justify-content: center; margin-top: 10px; font-size: 20px; color:green; font-style:italic;">
+    <?php if ($register_success != '') {echo htmlspecialchars($register_success);} ?>
+  </div>
 
   <div style="font-size: 20px; display: flex; justify-content: center; margin-top: 20px;">
   <br>Have an account?&nbsp<a href="login.php">Login</a>
