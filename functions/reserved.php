@@ -1,18 +1,9 @@
 <?php
 	$reserved_rows = [];
 	$reserved_error = null;
-
-	if (!isset($conn) || !($conn instanceof mysqli)) {
-		$reserved_error = 'Database connection is missing.';
-		return;
-	}
-
-	if (!isset($_SESSION['username'])) {
-		$reserved_error = 'You must be logged in to view reserved books.';
-		return;
-	}
-
 	$username = $_SESSION['username'];
+
+	// SQL query to get reserved books from the user
 	$sql = "
 		SELECT 
 			b.BookTitle AS BookTitle,
@@ -23,32 +14,11 @@
 			r.ReservedDate AS ReservedDate
 		FROM `ReservedBooks` r
 		INNER JOIN Books b ON b.ISBN = r.ISBN
-		WHERE r.Username = ?
+		WHERE r.Username = '{$username}'
 		ORDER BY r.ReservedDate DESC, b.BookTitle ASC
 	";
 
-	$stmt = $conn->prepare($sql);
-	if ($stmt === false) {
-		$reserved_error = 'Unable to prepare reserved books query: '.$conn->error;
-		return;
-	}
-
-	$stmt->bind_param('s', $username);
-
-	if (!$stmt->execute()) {
-		$reserved_error = 'Unable to execute reserved books query: '.$stmt->error;
-		$stmt->close();
-		return;
-	}
-
-	$result = $stmt->get_result();
-	if ($result !== false) {
-		$reserved_rows = $result->fetch_all(MYSQLI_ASSOC);
-		$result->free();
-	}
-	else {
-		$reserved_error = 'Unable to fetch reserved books: '.$stmt->error;
-	}
-
-	$stmt->close();
+	// Call sql query, and return results
+	$result = mysqli_query($conn, $sql);
+	$reserved_rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>

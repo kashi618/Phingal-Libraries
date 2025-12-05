@@ -5,7 +5,7 @@
         $username = trim($_POST['username'] ?? '');
 		$password = trim($_POST['password'] ?? '');
 
-        // Check if user has missing values
+	// Check if user has missing values
 	if ($username === '' || $password === '') {
 	    $login_error = "Please enter both username and password";
 	}
