@@ -6,7 +6,8 @@
   require "functions/register.php"; 
 
   $all_books = [];
-  $books_query = $conn->query("SELECT BookTitle, Author, Edition, Year, ISBN, ReservedStatus FROM Books ORDER BY BookTitle ASC");
+  $books_query = $conn->query("SELECT BookTitle, Author, Edition, Year, ISBN, ReservedStatus 
+    FROM Books ORDER BY BookTitle ASC");
   if ($books_query) {
     $all_books = $books_query->fetch_all(MYSQLI_ASSOC);
   }

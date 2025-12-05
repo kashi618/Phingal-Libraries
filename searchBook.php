@@ -37,7 +37,7 @@
     <select name="category">
       <option value="">All categories</option>
       <?php foreach ($categories as $category): ?>
-        <option value="<?php echo htmlentities($category['CategoryID']); ?>"><?php echo htmlentities($category['CategoryDescription']); ?></option>
+        <option value="<?php echo htmlentities($category['CategoryID']); ?>"<?php echo htmlentities($category['CategoryDescription']); ?></option>
       <?php endforeach; ?>
     </select>
     <select name="author">
